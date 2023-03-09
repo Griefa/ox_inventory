@@ -72,8 +72,8 @@ local function newItem(data)
 	if isServer then
 		data.client = nil
 
-		if server?.export then
-			data.cb = useExport(string.strsplit('.', server.export))
+		if serverData?.export then
+			data.cb = useExport(string.strsplit('.', serverData.export))
 		end
 
 		if not data.durability then
@@ -85,8 +85,8 @@ local function newItem(data)
 		data.server = nil
 		data.count = 0
 
-		if client?.export then
-			data.export = useExport(string.strsplit('.', client.export))
+		if clientData?.export then
+			data.export = useExport(string.strsplit('.', clientData.export))
 		end
 
 		if clientData?.image then
@@ -107,7 +107,7 @@ for type, data in pairs(data('weapons')) do
 			v.model = v.model or k -- actually weapon type or such? model for compatibility
 			v.hash = joaat(v.model)
 			v.stack = v.throwable and true or false
-			v.durability = v.durability or 1
+			v.durability = v.durability or 0.05
 			v.weapon = true
 		else
 			v.stack = true
